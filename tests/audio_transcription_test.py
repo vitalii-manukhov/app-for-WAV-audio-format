@@ -14,7 +14,7 @@ def similar(result: str, expected: str):
 
 def test_transcription_audio():
     # 1.
-    audio_path = settings.get_audio_path("speach_4.wav")
+    audio_path = settings.get_audio_path("speech_4.wav")
     audio = whisper.load_audio(audio_path)
     result = transcription_audio(audio)
     expected = """
@@ -38,7 +38,7 @@ def test_transcription_audio():
     assert similarity > 0.9
 
     # 2.
-    audio_path = settings.get_audio_path("speach_3.wav")
+    audio_path = settings.get_audio_path("speech_3.wav")
     audio = whisper.load_audio(audio_path)
     result = transcription_audio(audio)
     expected = """
@@ -58,7 +58,7 @@ def test_transcription_audio():
     assert similarity > 0.7
 
     # 3.
-    audio_path = settings.get_audio_path("speach_5.wav")
+    audio_path = settings.get_audio_path("speech_5.wav")
     audio = whisper.load_audio(audio_path)
     result = transcription_audio(audio)
     expected = """
@@ -78,7 +78,7 @@ def test_transcription_audio():
 
 
 def test_save_text_to_json():
-    audio_path = settings.get_audio_path("speach_1.wav")
+    audio_path = settings.get_audio_path("speech_1.wav")
     audio = whisper.load_audio(audio_path)
     text = transcription_audio(audio)
 
