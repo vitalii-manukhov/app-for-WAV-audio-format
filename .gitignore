@@ -1,5 +1,4 @@
 .venv
 .cache
 .env
-.tmp
 __pycache__
