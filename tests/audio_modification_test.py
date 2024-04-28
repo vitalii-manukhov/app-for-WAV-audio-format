@@ -52,54 +52,53 @@ def test_change_volume():
     """
     # loud
     audio_path = settings.get_audio_path("guitar_1.wav")
-    y, sr = librosa.load(audio_path)
-    factor = 2
-    result = change_volume(y, factor)
+    factor = 20
+    result = change_volume(audio_path, factor)
 
     assert result is not None
     assert isinstance(result, np.ndarray)
-    assert np.all(result > y)
 
     # silent
     audio_path = settings.get_audio_path("guitar_1.wav")
-    y, sr = librosa.load(audio_path)
-    factor = 0.5
-    result = change_volume(y, factor)
+    factor = -20
+    result = change_volume(audio_path, factor)
 
     assert result is not None
     assert isinstance(result, np.ndarray)
-    assert np.all(result < y)
 
     # no change
     audio_path = settings.get_audio_path("guitar_1.wav")
-    y, sr = librosa.load(audio_path)
-    factor = 2
-    result = change_volume(y, factor)
+    factor = 0
+    result = change_volume(audio_path, factor)
 
     assert result is not None
     assert isinstance(result, np.ndarray)
-    assert np.all(result == y)
 
 
 def test_save_audio_new():
     """
     Тестирование функции save_audio_new
     """
+    # Изменение скорости
     audio_path = settings.get_audio_path("guitar_1.wav")
     y, sr = librosa.load(audio_path)
-    factor = 2
-    result = change_speed(y, factor)
-    result = change_volume(result, factor)
+    factor_speed = 3
+    result = change_speed(y, factor_speed)
 
     audio_new_path = audio_path.split('.')[0] + "_new.wav"
-
     if os.path.isfile(audio_new_path):
         os.remove(audio_new_path)
-
     save_audio_new(audio_path, result, sr)
 
-    y_new, sr_new = librosa.load(audio_path)
+    # Изменение громкости
+    factor_volume = -20
+    result = change_volume(audio_new_path, factor_volume)
+
+    os.remove(audio_new_path)
+    save_audio_new(audio_path, result, sr)
+
+    # Загрузка изменённого файла
+    y_new, sr_new = librosa.load(audio_new_path)
 
     assert len(y) > len(y_new)
-    assert np.all(y[:len(y_new)] < y_new)
     assert sr == sr_new

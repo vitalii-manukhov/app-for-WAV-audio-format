@@ -2,11 +2,12 @@ import librosa
 import soundfile as sf
 import numpy as np
 import os
+from pydub import AudioSegment
 
 # audio_path: str = ""
 # y, sr = librosa.load(audio_path)
 # factor = ...
-# audio_new = func(y, factor)
+# audio_new = change_speed(y, factor)
 # save_audio_new(audio_path, audio_new, sr)
 
 
@@ -16,10 +17,18 @@ def change_speed(audio: np.ndarray, factor: float) -> np.ndarray:
     return librosa.effects.time_stretch(audio, rate=factor)
 
 
-def change_volume(audio: np.ndarray, factor: float) -> np.ndarray:
+# audio_path: str = ""
+# factor = ...
+# audio_new = change_volume(audio_path, factor)
+
+
+def change_volume(audio_path: str, factor: float) -> np.ndarray:
     """
     """
-    return audio * factor
+    audio_segment = AudioSegment.from_file(audio_path)
+    new_audio_segment = audio_segment + factor
+    result = np.array(new_audio_segment.get_array_of_samples())
+    return result
 
 
 def save_audio_new(audio_path: str, audio_new: np.ndarray, sr: float) -> None:
