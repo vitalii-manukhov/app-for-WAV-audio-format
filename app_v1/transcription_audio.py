@@ -2,24 +2,28 @@ import whisper
 import numpy as np
 import os
 import json
+from utils.config import settings
 
 # audio_path: str = ""
 # audio = whisper.load_audio(audio_path)
 # audio_new = transcription_audio(audio, factor)
 #
 
-model = whisper.load_model("small")
+model = whisper.load_model(
+    name="medium",
+    download_root=settings.WHISPER_DOWNLOAD_PATH)
 
 parameters = {
-    "task": "transcribe"
+    "task": "transcribe",
+    "fp16": False
 }
 
 
 def transcription_audio(audio: np.ndarray) -> str:
     """
     """
-    text = whisper.transcribe(model, audio, **parameters)
-    return text
+    result = whisper.transcribe(model, audio, **parameters)
+    return result["text"]
 
 
 def save_text_to_json(audio_path: str, text: str) -> None:
