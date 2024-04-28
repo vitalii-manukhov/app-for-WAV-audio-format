@@ -8,6 +8,11 @@ from typing import Union
 
 def change_speed(audio_path: str, factor: float) -> np.ndarray:
     """
+    Функция для изменения скорости аудиофайла
+
+    Аргументы:
+    audio_path - путь до аудиофайла
+    factor - коэффициент скорости
     """
     y, sr = librosa.load(audio_path)
     return librosa.effects.time_stretch(y, rate=factor)
@@ -15,6 +20,11 @@ def change_speed(audio_path: str, factor: float) -> np.ndarray:
 
 def change_volume(audio_path: str, factor: int) -> AudioSegment:
     """
+    Функция для изменения громкости аудиофайла
+
+    Аргументы:
+    audio_path - путь до аудиофайла
+    factor - коэффициент громкости
     """
     sound = AudioSegment.from_file(audio_path)
     return sound + factor
@@ -22,6 +32,13 @@ def change_volume(audio_path: str, factor: int) -> AudioSegment:
 
 def save_audio_new(audio_path: str,
                    audio_new: Union[AudioSegment, np.ndarray]) -> None:
+    """
+    Функция для сохранения изменений аудиофайла в папке data
+
+    Аргументы:
+    audio_path - путь до исходного аудиофайла
+    audio_new - изменённый аудиофайл
+    """
     base = audio_path.split('.')[0]
     audio_outpath = base + "_new.wav"
 

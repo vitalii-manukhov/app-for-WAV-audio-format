@@ -9,6 +9,13 @@ import whisper
 
 
 def check_existence(audio_name: str, audio_path: str) -> tuple[str, str]:
+    """
+    Функция для проверки существования введённого имени аудиофайла
+
+    Аргументы:
+    audio_name - введённое имя аудиофайла
+    audio_path - путь до аудиофайла
+    """
     while os.path.isfile(audio_path) is False:
         print("\nФайла с таким именем не существует в папке data")
         audio_name = input(
@@ -20,6 +27,9 @@ def check_existence(audio_name: str, audio_path: str) -> tuple[str, str]:
 
 
 def main():
+    """
+    Реализация консольного интерфейса
+    """
     print("Добро пожаловать в приложение для работы с аудио в формате .WAV!")
     print("Пожалуйста, положите ваш аудиофайл в папку data.")
     audio_name = input(

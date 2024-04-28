@@ -13,6 +13,9 @@ def similar(result: str, expected: str):
 
 
 def test_transcription_audio():
+    """
+    Тестирование расшифровки аудио в текст
+    """
     # 1.
     audio_path = settings.get_audio_path("speech_4.wav")
     audio = whisper.load_audio(audio_path)
@@ -78,6 +81,9 @@ def test_transcription_audio():
 
 
 def test_save_text_to_json():
+    """
+    Тестирование сохранения текста в формате json
+    """
     audio_path = settings.get_audio_path("speech_1.wav")
     audio = whisper.load_audio(audio_path)
     text = transcription_audio(audio)

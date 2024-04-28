@@ -10,8 +10,7 @@ import whisper
 
 def test_guitars():
     """
-    Тестирование модификации аудифайлов
-    со звуками гитары
+    Тестирование модификации аудифайлов с гитарой
     """
     # # 1.
     # # Изменение скорости
@@ -51,6 +50,9 @@ def test_guitars():
 
 
 def test_speeches():
+    """
+    Тестирование распознавания аудифайлов с речью
+    """
     # 1.
     audio_path = settings.get_audio_path("speech_2.wav")
     audio = whisper.load_audio(audio_path)

@@ -16,12 +16,21 @@ parameters = {
 
 def transcription_audio(audio: np.ndarray) -> str:
     """
+    Функция транскрибации аудио в текст
     """
     result = whisper.transcribe(model, audio, **parameters)
     return result["text"]
 
 
 def save_text_to_json(audio_path: str, text: str) -> None:
+    """
+    Функция сохранения текста, полученного в результате
+    расшифрования в json формате
+
+    Аргументы:
+    audio_path - путь до исходного аудиофайла
+    text - расшифрованный текст
+    """
     result = {
         "transcription": text
     }
