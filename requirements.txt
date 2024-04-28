@@ -44,9 +44,10 @@ pycparser==2.22
 pydantic==2.7.1
 pydantic-settings==2.2.1
 pydantic_core==2.18.2
-pytest==8.1.1
+pydub==0.25.1
+pytest==8.2.0
 python-dotenv==1.0.1
-regex==2024.4.16
+regex==2024.4.28
 requests==2.31.0
 scikit-learn==1.4.2
 scipy==1.13.0
